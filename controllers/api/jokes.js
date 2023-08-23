@@ -4,7 +4,8 @@ const Joke = require('../../models/joke');
 
 module.exports = {
   fetchRandomJoke,
-  postJoke
+  postJoke,
+  getAllJokes
 };
 
 
@@ -41,3 +42,12 @@ async function fetchRandomJoke(req, res) {
     }
 }
 
+async function getAllJokes(req, res) {
+    try {
+      const jokes = await Joke.find().populate('user', 'name');
+      res.json(jokes);
+    } catch (error) {
+      res.status(500).json({ error: "Can't fetch jokes" });
+    }
+  }
+  
