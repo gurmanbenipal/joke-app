@@ -1,8 +1,10 @@
 const fetch = require('node-fetch');
+const Joke = require('../../models/joke');
 
 
 module.exports = {
-  fetchRandomJoke
+  fetchRandomJoke,
+  postJoke
 };
 
 
@@ -25,3 +27,17 @@ async function fetchRandomJoke(req, res) {
     }
   }
   
+  async function postJoke(req, res) {
+    try {
+        const joke = new Joke({
+            content: req.body.content,
+            user: req.user._id
+        });
+        await joke.save();
+        res.status(201).json(joke);
+    } catch (error) {
+        console.error("Error while saving joke:", error);
+        res.status(500).json({ error: "Can't save the joke" });
+    }
+}
+
