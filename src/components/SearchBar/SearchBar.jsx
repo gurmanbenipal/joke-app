@@ -21,9 +21,9 @@ export default function SearchBar({ setJokes }) {
         type="text" 
         value={searchTerm} 
         onChange={e => setSearchTerm(e.target.value)} 
-        placeholder="Search for a joke"
+        placeholder="Search (optional)"
       />
-      <button type="submit">Search</button>
+      <button type="submit">Get Jokes</button>
     </form>
   );
 }
