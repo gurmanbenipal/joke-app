@@ -5,7 +5,8 @@ const Joke = require('../../models/joke');
 module.exports = {
   fetchRandomJoke,
   postJoke,
-  getAllJokes
+  getAllJokes,
+  deleteJoke
 };
 
 
@@ -50,5 +51,24 @@ async function getAllJokes(req, res) {
         res.json(jokes);
     } catch (error) {
         res.status(500).json({ error: "Can't fetch jokes" });
+    }
+}
+
+async function deleteJoke(req, res) {
+    try {
+        const jokeId = req.params.id;
+        const joke = await Joke.findById(jokeId);
+
+        // this jus makes sure the joke belongs to the user thats logged in, even tho there will be no delete button showed for them we still need to make sure our backend is protected
+        if (!joke || String(joke.user) !== String(req.user._id)) {
+            return res.status(400).send('You cant be deleting someone elses joke');
+        }
+
+        await joke.remove();
+        res.status(200).send('Joke deleted successfully');
+
+    } catch(err) {
+        console.error(err);
+        res.status(500).send('An error occurred');
     }
 }
