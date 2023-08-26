@@ -16,7 +16,11 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  favorites: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Joke'
+  }]
 }, {
   timestamps: true,
   toJSON: {
@@ -32,6 +36,7 @@ userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) return next();
   // Replace the password with the computed hash
   this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
+  next();
 });
 
 module.exports = mongoose.model('User', userSchema);

@@ -44,7 +44,7 @@ function AddJokeForm() {
                 <textarea 
                     value={jokeContent} 
                     onChange={(e) => setJokeContent(e.target.value)}
-                    placeholder="Type your joke here..."
+                    placeholder="Type your joke here"
                 ></textarea>
             </label>
             <button type="submit">Submit Joke</button>

@@ -5,6 +5,7 @@ import './App.css';
 import AuthPage from '../AuthPage/AuthPage';
 import SearchPage from '../SearchPage/SearchPage';
 import BrowsePage from '../BrowsePage/BrowsePage';
+
 import AddJokePage from '../AddJokePage/AddJokePage';
 import NavBar from '../../components/NavBar/NavBar';
 
@@ -20,6 +21,7 @@ export default function App() {
             <Routes>
             <Route path="/" element={<SearchPage />} />
             <Route path="/browse" element={<BrowsePage />} />
+
             <Route path="/add-joke" element={<AddJokePage />} />
 
 
