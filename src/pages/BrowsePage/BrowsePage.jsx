@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { Container, Row, Col, Card, Button, ListGroup } from 'react-bootstrap';
 import UserJokes from '../../components/UserJokes/UserJokes';
 import { getUser } from '../../utilities/users-service';
+import './Browsepage.css';
 
 export default function BrowsePage() {
     const [userFavoriteJokes, setUserFavoriteJokes] = useState([]);
@@ -59,43 +61,57 @@ async function handleDelete(id) {
         )
     );
 
-return (
-    <div>
-        <UserJokes />
+    return (
+        <Container>
 
-        {(userFavoriteJokes.length === 0 && filteredGlobalJokes.length === 0) && <p>No jokes yet</p>}
 
-        {userFavoriteJokes.length > 0 && (
-            <>
-                    <h2>Your Favorites</h2>
-                    <ul>
-                        {userFavoriteJokes.map(joke => (
-                        <li key={joke._id}>
-                                {joke.content} - by {joke.user.name}
-                                {String(joke.user._id) === String(user._id) && (
-                                    <button onClick={() => handleDelete(joke._id)}>Delete</button>
-                                )}
-                            </li>
+            {(userFavoriteJokes.length === 0 && filteredGlobalJokes.length === 0) && 
+                <Row className="mt-4">
+                    <Col>
+                        <p>No jokes yet</p>
+                    </Col>
+                </Row>
+            }
+
+            {userFavoriteJokes.length > 0 && (
+                <Row className="mt-4">
+                    <Col>
+                        <h2>Your Favorites 😎</h2>
+                        <ListGroup>
+                            {userFavoriteJokes.map(joke => (
+                                <ListGroup.Item key={joke._id}>
+                                    {joke.content} - by {joke.user.name}
+                                    {String(joke.user._id) === String(user._id) && (
+                                        <Button variant="danger" size="sm" className="delete-btn" onClick={() => handleDelete(joke._id)}>Delete</Button>
+                                    )}
+                                </ListGroup.Item>
+                            ))}
+                        </ListGroup>
+                    </Col>
+                </Row>
+            )}
+
+{filteredGlobalJokes.length > 0 && (
+    <Row className="mt-4 align-items-center"> 
+        <Col>
+            <div className="d-flex align-items-center justify-content-between"> 
+                <h2>Global Added Jokes 😹</h2>
+                <UserJokes />
+            </div>
+            <ListGroup>
+                {filteredGlobalJokes.map(joke => (
+                    <ListGroup.Item key={joke._id}>
+                        {joke.content} - by {joke.user.name}
+                        {String(joke.user._id) === String(user._id) && (
+                            <Button variant="danger" size="sm" className="delete-btn" onClick={() => handleDelete(joke._id)}>Delete</Button>
+                      )}
+                    </ListGroup.Item>
                 ))}
-                 </ul>
-                </>
-            )}
+            </ListGroup>
+        </Col>
+    </Row>
+)}
 
-        {filteredGlobalJokes.length > 0 && (
-                <>
-                <h2>Global Added Jokes</h2>
-                 <ul>
-                    {filteredGlobalJokes.map(joke => (
-                            <li key={joke._id}>
-                                {joke.content} - by {joke.user.name}
-                                {String(joke.user._id) === String(user._id) && (
-                                <button onClick={() => handleDelete(joke._id)}>Delete</button>
-                                )}
-                            </li>
-                        ))}
-                </ul>
-            </>
-            )}
-    </div>
+        </Container>
     );
 }

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
+import '../../pages/App/App.css';
 
 export default function SearchBar({ setJokes }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,14 +18,17 @@ export default function SearchBar({ setJokes }) {
   }
 
   return (
-    <form onSubmit={handleSearch}>
-      <input 
-        type="text" 
-        value={searchTerm} 
-        onChange={e => setSearchTerm(e.target.value)} 
-        placeholder="Search (optional)"
-      />
-      <button type="submit">Get Jokes</button>
-    </form>
-  );
+    <Form onSubmit={handleSearch} className="custom-search-form mb-3">
+      <Form.Group>
+        <Form.Control 
+        className="custom-search-bar"
+            type="text" 
+            value={searchTerm} 
+            onChange={e => setSearchTerm(e.target.value)} 
+            placeholder="Search (optional)"
+        />
+      </Form.Group>
+      <Button variant="primary" type="submit">Get Jokes</Button>
+    </Form>
+);
 }

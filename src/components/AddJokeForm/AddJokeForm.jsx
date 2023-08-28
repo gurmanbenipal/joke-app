@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form, Button, Alert } from 'react-bootstrap';
 
 function AddJokeForm() {
     const [jokeContent, setJokeContent] = useState('');
@@ -38,17 +39,19 @@ function AddJokeForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Your Joke:
-                <textarea 
+        <Form onSubmit={handleSubmit} className="mb-3">
+            <Form.Group>
+                <Form.Label>Your Joke:</Form.Label>
+                <Form.Control 
+                    as="textarea" 
+                    rows={3}
                     value={jokeContent} 
                     onChange={(e) => setJokeContent(e.target.value)}
                     placeholder="Type your joke here"
-                ></textarea>
-            </label>
-            <button type="submit">Submit Joke</button>
-        </form>
+                />
+            </Form.Group>
+            <Button variant="primary" type="submit">Submit Joke</Button>
+        </Form>
     );
 }
 

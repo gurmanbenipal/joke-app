@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SearchResults from '../../components/SearchResults/SearchResults';
-
+import '../../pages/App/App.css';
 export default function SearchPage() {
     const [jokes, setJokes] = useState([]);
 
@@ -33,6 +33,7 @@ export default function SearchPage() {
 
     return (
         <div>
+            <h1 className="app-title">THE JOKE APP🤣</h1>
             <SearchBar setJokes={setJokes} />
             <SearchResults jokes={jokes} onFavorite={handleFavorite} />
         </div>
