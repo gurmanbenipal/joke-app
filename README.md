@@ -43,6 +43,12 @@ Welcome to The Joke App! This application lets you search for jokes using an Api
 ## Add Joke Page
 <img src="screenshots/Screenshot 2023-08-28 at 3.51.40 PM.png" alt="add joke page" width="500" height="400">
 
+## LogIn Page
+<img src="screenshots/Screenshot 2023-08-28 at 4.43.53 PM.png" alt="login page" width="500" height="400">
+
+## SignUp Page
+<img src="screenshots/Screenshot 2023-08-28 at 4.43.59 PM.png" alt="signup page" width="500" height="400">
+
 
 ## CODE PREVIEW! 🔬 (SEARCHING FOR A JOKE USING AN API) 
 

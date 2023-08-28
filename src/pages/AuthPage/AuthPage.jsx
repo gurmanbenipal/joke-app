@@ -8,7 +8,7 @@ export default function AuthPage({ setUser }) {
   return (
     <main>
       <Container>
-        <Row className="align-items-center">
+        <Row className="align-items-center mt-4"  >
           <Col>
             <h1>{showSignUp ? 'SignUp' : 'Login'}</h1>
           </Col>
