@@ -31,9 +31,6 @@ Welcome to The Joke App! This application lets you search for jokes using an Api
 
 ## Screenshots 📸
 
-## Landing Page
-<img src="" alt="landing page" width="500" height="400">
-
 ## Search Page
 <img src="screenshots/Screenshot 2023-08-28 at 3.49.31 PM.png" alt="search page" width="500" height="400">
 
