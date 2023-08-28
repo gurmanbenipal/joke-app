@@ -1,25 +1,30 @@
 import { useState } from 'react';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import LoginForm from '../../components/LoginForm/LoginForm';
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Row, Col } from 'react-bootstrap';
 
 export default function AuthPage({ setUser }) {
   const [showSignUp, setShowSignUp] = useState(false);
   return (
     <main>
       <Container>
-      <Button onClick={() => setShowSignUp(!showSignUp)} variant="warning">
-            {showSignUp ? 'Log In' : 'Sign Up'}
-        </Button>
+        <Row className="align-items-center">
+          <Col>
+            <h1>{showSignUp ? 'SignUp' : 'Login'}</h1>
+          </Col>
+          <Col xs="auto">
+            <Button onClick={() => setShowSignUp(!showSignUp)} variant="warning" >
+              {showSignUp ? 'Log In' : 'Sign Up'}
+            </Button>
+          </Col>
+        </Row>
 
-        { showSignUp ? 
+        {showSignUp ? 
           <div>
-            <h1>SignUp</h1>
             <SignUpForm setUser={setUser} />
           </div>
           :
           <div>
-            <h1>Login</h1>
             <LoginForm setUser={setUser} />
           </div>
         }
