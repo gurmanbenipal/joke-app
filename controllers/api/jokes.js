@@ -44,16 +44,7 @@ async function postJoke(req, res) {
 
 async function getAllJokes(req, res) {
     try {
-        if (!req.user || !req.user._id) {
-            return res.status(400).json({ error: "User not authenticated" });
-        }
-
-        const userFavoriteJokes = await Joke.find({ favoritedBy: req.user._id }).populate('user', 'name');
-
-
-        if (!userFavoriteJokes) {
-            return res.status(404).json({ error: "Favorite jokes not found" });
-        }
+        const userFavoriteJokes = req.user ? await Joke.find({ favoritedBy: req.user._id }).populate('user', 'name') : [];
 
         const globalAddedJokes = await Joke.find()
             .populate('user', 'name')
@@ -72,6 +63,7 @@ async function getAllJokes(req, res) {
         res.status(500).json({ error: "Can't fetch jokes" });
     }
 }
+
 
 
 

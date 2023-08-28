@@ -1,16 +1,25 @@
 import { useState } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SearchResults from '../../components/SearchResults/SearchResults';
+import { useNavigate } from 'react-router-dom';
 import '../../pages/App/App.css';
+
 export default function SearchPage() {
     const [jokes, setJokes] = useState([]);
+    const navigate = useNavigate();
+    const user = localStorage.getItem('token');
 
     function handleFavorite(joke) {
+        if (!user) {
+            navigate('/login');
+            return; 
+        }
+
         fetch('/api/jokes/favorite', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}` 
+                'Authorization': `Bearer ${user}` 
             },
             body: JSON.stringify({ content: joke })
         })
@@ -26,16 +35,15 @@ export default function SearchPage() {
         })
         .then(data => {
             console.log(data);
-        })
-        
+        });
     }
-    
 
     return (
         <div>
             <h1 className="app-title">THE JOKE APP🤣</h1>
             <SearchBar setJokes={setJokes} />
-            <SearchResults jokes={jokes} onFavorite={handleFavorite} />
+            <SearchResults jokes={jokes} onFavorite={handleFavorite} user={user} />
+
         </div>
     );
 }

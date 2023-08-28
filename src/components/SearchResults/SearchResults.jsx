@@ -1,9 +1,11 @@
 import { Button } from 'react-bootstrap';
 
-export default function SearchResults({ jokes, onFavorite }) {
+export default function SearchResults({ jokes, onFavorite, user }) {
     const handleFavorite = (joke) => {
         onFavorite(joke);
-        window.alert("Joke has been added to favorites!");
+        if (user) {
+            window.alert("Joke has been added to Global favorites!");
+        }
     }
 
     return (

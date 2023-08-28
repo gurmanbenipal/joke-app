@@ -26,7 +26,7 @@ function AddJokeForm() {
             const responseData = await response.json();
             if (response.status === 201) {
                 setJokeContent(''); 
-                alert("Your joke was added!");
+                alert("Your joke was added to Global personals!");
             } else {
                 console.error("Server response:", responseData);
                 alert("There was an issue addin ur joke");
