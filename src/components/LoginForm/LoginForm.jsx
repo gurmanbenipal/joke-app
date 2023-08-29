@@ -2,6 +2,7 @@ import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
 import { Form, Button, Alert, Container } from 'react-bootstrap';
 
+
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
     email: '',
@@ -23,6 +24,7 @@ export default function LoginForm({ setUser }) {
       // payload of the JSON Web Token (JWT)
       const user = await usersService.login(credentials);
       setUser(user);
+      
     } catch {
       setError('Log In Failed - Try Again');
     }

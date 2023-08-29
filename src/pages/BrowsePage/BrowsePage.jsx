@@ -34,16 +34,16 @@ export default function BrowsePage() {
                     setUserFavoriteJokes(data.userFavoriteJokes);
                     setGlobalAddedJokes(data.globalAddedJokes);
                 } else {
-                    // If something's weird, we write "error" in our computer's diary.
+                    // If something's weird, we write "error" 
                     console.error("errorrrr");
                 }
             } catch (err) {
-                // If anything breaks, we write that in our diary too.
+                // If anything breaks, we write that too
                 console.error("Error fetching jokes:", err);
             }
         }
 
-        // Now we run our joke-getting function!
+        // Now we run our joke grabbin function!
         fetchJokes();
     }, []);
 

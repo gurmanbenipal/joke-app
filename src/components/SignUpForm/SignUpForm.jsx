@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { signUp } from '../../utilities/users-service';
 import { Form, Button, Alert, Container } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
 
 export default class SignUpForm extends Component {
   state = {
